@@ -18,7 +18,26 @@ spec:
       containers:
       - image: httpd:2.4.46-alpine
         name: apache
-
-
-
+        - containerPort: 8113
+          name: web-port
+          protocol: TCP
+        env:
+        - name: HOST_ELK
+          value: 10.0.2.101:9200
+        - name: HOST_DB_IP
+          value: 10.0.1.21
+        - name: HOST_DB_PORT
+          value: "26257"
+        volumeMounts:
+          - mountPath: "/code/pdf_signing"
+            name: pvc-volume-01
+          - mountPath: "/code/xml_file"
+            name: pvc-volume-02
+      volumes:
+        - name: pvc-volume-01
+          persistentVolumeClaim:
+            claimName: pvc-01
+        - name: pvc-volume-02
+          persistentVolumeClaim:
+            claimName: pvc-02
 
