@@ -18,6 +18,7 @@ spec:
       containers:
       - image: httpd:2.4.46-alpine
         name: apache
+        ports:
         - containerPort: 8113
           name: web-port
           protocol: TCP
