@@ -2,6 +2,12 @@
 
 #kubectl get blockdevice -n openebs
 
+#Verify cStor Pool configuration is created successfully using the following command.
+#kubectl get spc
+
+#Verify if cStor Pool is created successfully using the following command.  
+#kubectl get csp
+
 ---
 #create StoragePoolClaim
 
@@ -38,10 +44,14 @@ metadata:
   annotations:
     openebs.io/cas-type: cstor
     cas.openebs.io/config: |
+      - enabled: "true"
+        name: VolumeMonitor
       - name: StoragePoolClaim
         value: "cstor-disk-pool"
       - name: ReplicaCount
         value: "3"
+      - name: FSType
+        value: ext4
 provisioner: openebs.io/provisioner-iscsi
 
 ---
