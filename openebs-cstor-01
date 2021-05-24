@@ -61,6 +61,7 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: local-device-pvc
+  namespace: sritrang-00
 spec:
   storageClassName: local-device
   accessModes:
