@@ -1,0 +1,1 @@
+for CRD in $(kubectl get crd -n rook-ceph | grep rook.io | cut -d " " -f 1 | xargs); do kubectl patch crd -n rook-ceph $CRD --type merge -p '{"metadata":{"finalizers": [null]}}'; done
