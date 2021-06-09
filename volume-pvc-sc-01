@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: sc-vol-01
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: nfs-storageclass-01
+  resources:
+    requests:
+      storage: 2Gi
