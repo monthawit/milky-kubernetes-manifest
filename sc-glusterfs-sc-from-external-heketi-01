@@ -1,0 +1,16 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: gluster-storageclass-01
+provisioner: kubernetes.io/glusterfs
+reclaimPolicy: Retain
+volumeBindingMode: Immediate
+allowVolumeExpansion: true
+parameters:
+  resturl: "http://192.168.234.131:8080" 
+  restuser: "admin" 
+  secretName: "heketi-secret"
+  secretNamespace: "default"
+  volumetype: "replicate:3"
+  volumenameprefix: "glusterfs-"
+  clusterid: "a21816aff828aff314df60dc1e1a1a88"
