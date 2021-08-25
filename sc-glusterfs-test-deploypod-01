@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-demo
+  namespace: demo
+  labels:
+    app: demo-01
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo-01
+  template:
+    metadata:
+      labels:
+        app: demo-01
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        ports:
+        - containerPort: 8080
+          name: web-port
+          protocol: TCP
+        volumeMounts:
+          - mountPath: "/vol-01"
+            name: pvc-vol-01
+      volumes:
+        - name: pvc-vol-01
+          persistentVolumeClaim:
+            claimName: gluster-pvc
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-demo
+  namespace: demo
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+  selector:
+    app: demo-01
+---
