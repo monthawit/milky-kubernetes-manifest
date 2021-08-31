@@ -1,0 +1,13 @@
+Set default namespace
+
+# Show your newly created namespace
+kubectl get namespaces
+
+# See contexts
+kubectl config get-contexts
+
+# Set default namespace
+kubectl config set-context $(kubectl config current-context) --namespace=<username>
+
+# See contexts
+kubectl config get-contexts
