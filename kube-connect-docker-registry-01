@@ -1,0 +1,20 @@
+# Create Docker credentials Kubernetes Secret by command
+kubectl create secret generic private-registry \
+  --from-file=.dockerconfigjson=$HOME/.docker/config.json \
+  --type=kubernetes.io/dockerconfigjson
+
+
+
+#yaml 
+apiVersion: v1
+kind: Secret
+metadata:
+  name: pri-reg-<username>
+  namespace: <username>
+data:
+  .dockerconfigjson: UmVhbGx5IHJxxxxxxxxxxxxxxxxxxyyyyyyyyyyyyyyyyyyyyzzzzzzzzzzzzzzzzzzzzdnZ2dnZ2dnZ2dnZ2cgYXV0aCBrZXlzCg==
+type: kubernetes.io/dockerconfigjson
+
+# See newly created secret
+kubectl get secret
+kubectl describe secret pri-reg-<username>
